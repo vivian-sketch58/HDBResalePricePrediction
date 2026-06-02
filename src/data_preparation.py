@@ -1,8 +1,56 @@
+# Standard library imports
+import logging
 import re
-import pandas as pd  
-  
+from typing import Any, Dict
+
+# Related third-party imports
+import pandas as pd 
+from sklearn.compose import ColumnTransformer 
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder
+
+
+
+class DataPreparation:
+    """
+    A class used to clean and preprocess HDB resale prices data.
+
+    Attributes:
+    -----------
+    config : Dict[str, Any]
+        Configuration dictionary containing parameters for data cleaning and preprocessing.
+    preprocessor : sklearn.compose.ColumnTransformer
+        A preprocessor pipeline for transforming numerical, nominal, and ordinal features.
+    """
+
+    def __init__(self, config: Dict[str, Any]):
+        """
+        Initializes the DataPreparation class with a configuration dictionary.
+
+        Args:
+        -----
+        config (Dict[str, Any]): Configuration dictionary containing parameters for data cleaning and preprocessing.
+        """
+        self.config = config
+        self.preprocessor = self._create_preprocessor()
+
+    def clean_data(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Cleans the input DataFrame by performing several preprocessing steps.
+
+        Args:
+        -----
+        df (pd.DataFrame): The input DataFrame containing the raw data.
+
+        Returns:
+        --------
+        pd.DataFrame: The cleaned DataFrame.
+        """
+        logging.info("Starting data cleaning.")
+
+
 # Load the dataset  
-df = pd.read_csv('./data/resale_transactions.csv')
+# df = pd.read_csv('./data/resale_transactions.csv')
 
 # Reomoving Duplicates
 df.drop_duplicates(inplace=True)
@@ -135,7 +183,8 @@ X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.2, random_
 # Split the test-validation set (20%) into validation (10%) and test (10%) sets
 X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=42)
 
-from sklearn.pipeline import Pipeline
+
+
 from sklearn.preprocessing import StandardScaler
 
 # Define numerical features to be standardized
@@ -146,7 +195,6 @@ numerical_transformer = Pipeline(steps=[
     ('scaler', StandardScaler())
 ])
 
-from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder
 
 # Define nomial features to be one-hot encoded
 nominal_features = ['month', 'town_name', 'flatm_name']
@@ -170,7 +218,6 @@ ordinal_transformer = Pipeline(steps=[
     ('ordinal', OrdinalEncoder(categories=[flat_type_categories], handle_unknown='use_encoded_value', unknown_value=-1))  
 ])
 
-from sklearn.compose import ColumnTransformer
 
 # Combine transformers into a single ColumnTransformer
 preprocessor = ColumnTransformer(
