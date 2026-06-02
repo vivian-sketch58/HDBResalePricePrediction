@@ -1,0 +1,17 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# macOS
+__MACOSX/
+.DS_Store
+
+# Windows
+*:Zone.Identifier
+
+# General
+*.log
+
+.env
+venv/
+.ipynb_checkpoints/
