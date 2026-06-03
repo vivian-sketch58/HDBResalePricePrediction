@@ -74,46 +74,46 @@ class ModelTraining:
 
 
     def train_and_evaluate_baseline_models(
-            self,
-            X_train: pd.DataFrame,
-            y_train: pd.Series,
-            X_val: pd.DataFrame,
-            y_val: pd.Series,
-        ) -> Tuple[Dict[str, Pipeline], Dict[str, Dict[str, float]]]:
-            """
-            Create, train, and evaluate baseline models.
+        self,
+        X_train: pd.DataFrame,
+        y_train: pd.Series,
+        X_val: pd.DataFrame,
+        y_val: pd.Series,
+    ) -> Tuple[Dict[str, Pipeline], Dict[str, Dict[str, float]]]:
+        """
+        Create, train, and evaluate baseline models.
 
-            Args:
-            -----
-            X_train (pd.DataFrame): The training features.
-            y_train (pd.Series): The training target variable.
-            X_val (pd.DataFrame): The validation features.
-            y_val (pd.Series): The validation target variable.
+        Args:
+        -----
+        X_train (pd.DataFrame): The training features.
+        y_train (pd.Series): The training target variable.
+        X_val (pd.DataFrame): The validation features.
+        y_val (pd.Series): The validation target variable.
 
-            Returns:
-            --------
-            Tuple[Dict[str, Pipeline], Dict[str, Dict[str, float]]]: A tuple containing the trained pipelines and their evaluation metrics.
-            """
-            logging.info("Training and evaluating baseline models.")
-            models = {
-                "linear_regression": LinearRegression(),
-                "ridge": Ridge(),
-                "lasso": Lasso(),
-            }
-            pipelines = {}
-            metrics = {}
+        Returns:
+        --------
+        Tuple[Dict[str, Pipeline], Dict[str, Dict[str, float]]]: A tuple containing the trained pipelines and their evaluation metrics.
+        """
+        logging.info("Training and evaluating baseline models.")
+        models = {
+            "linear_regression": LinearRegression(),
+            "ridge": Ridge(),
+            "lasso": Lasso(),
+        }
+        pipelines = {}
+        metrics = {}
 
-            for model_name, model in models.items():
-                pipeline = Pipeline(
-                    steps=[("preprocessor", self.preprocessor), ("regressor", model)]
-                )
-                pipeline.fit(X_train, y_train)
-                pipelines[model_name] = pipeline
-                metrics[model_name] = self._evaluate_model(
-                    pipeline, X_val, y_val, model_name
-                )
+        for model_name, model in models.items():
+            pipeline = Pipeline(
+                steps=[("preprocessor", self.preprocessor), ("regressor", model)]
+            )
+            pipeline.fit(X_train, y_train)
+            pipelines[model_name] = pipeline
+            metrics[model_name] = self._evaluate_model(
+                pipeline, X_val, y_val, model_name
+            )
 
-            return pipelines, metrics
+        return pipelines, metrics
 
 
     def train_and_evaluate_tuned_models(
