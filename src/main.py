@@ -23,7 +23,6 @@ def main():
 
     # Load CSV file into a DataFrame
     df = pd.read_csv(config["file_path"])
-# df = pd.read_csv('./data/resale_transactions.csv')
 
     # Initialize and run data preparation
     data_prep = DataPreparation(config)

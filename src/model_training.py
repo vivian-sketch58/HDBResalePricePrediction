@@ -231,14 +231,8 @@ class ModelTraining:
             logging.info(f"{metric_name}: {metric_value}")
         return metrics
 
-# Separate the data into features and target
-# X = df.drop(columns='resale_price')
-# y = df['resale_price']
 
-# param_grid = {
-#     'regressor__alpha': [0.1, 1, 10, 100, 1000],
-#     'regressor__fit_intercept': [True, False]
-# }
+
 
 
 

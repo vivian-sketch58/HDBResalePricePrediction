@@ -1,0 +1,39 @@
+file_path: './data/resale_transactions.csv'
+target_column: 'resale_price'
+val_test_size: 0.2
+val_size: 0.5
+param_grid:
+    regressor__alpha': [0.1, 1, 10, 100, 1000]
+    regressor__fit_intercept': [True, False]
+cv: 5
+scoring: r2
+# Define numerical features to be standardized
+numerical_features:
+- floor_area_sqm
+- remaining_lease_months
+- lease_commence_date
+- year
+
+# Define nomial features to be one-hot encoded
+nominal_features:
+- month
+- town_name
+- flatm_name
+
+# Define ordinal features to be ordinally encoded
+ordinal_features:
+- flat_type
+
+# Define the ordinal categories for flat_type
+flat_type_categories:
+- 1 ROOM
+- 2 ROOM
+- 3 ROOM
+- 4 ROOM
+- 5 ROOM
+- MULTI-GENERATION
+- EXECUTIVE
+
+# Define passthrough features that will not be transformed
+passthrough_features:
+- storey_range
