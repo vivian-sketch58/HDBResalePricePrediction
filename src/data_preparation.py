@@ -222,19 +222,6 @@ class DataPreparation:
 # Load the dataset  
 # df = pd.read_csv('./data/resale_transactions.csv')
 
-# Separate the data into features and target
-X = df.drop(columns='resale_price')
-y = df['resale_price']
-
-from sklearn.model_selection import train_test_split
-
-# Split the data into training (80%) and test-validation (20%) sets
-X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Split the test-validation set (20%) into validation (10%) and test (10%) sets
-X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=42)
-
-
 # Define numerical features to be standardized
 numerical_features = ['floor_area_sqm', 'remaining_lease_months', 'lease_commence_date', 'year']
 
