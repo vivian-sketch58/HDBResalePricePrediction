@@ -219,8 +219,7 @@ class DataPreparation:
         return total_months
 
 
-# Load the dataset  
-# df = pd.read_csv('./data/resale_transactions.csv')
+
 
 # Define numerical features to be standardized
 numerical_features = ['floor_area_sqm', 'remaining_lease_months', 'lease_commence_date', 'year']
