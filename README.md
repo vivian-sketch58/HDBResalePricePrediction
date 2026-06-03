@@ -37,7 +37,7 @@ By transforming historical housing data into actionable insights, this pipeline 
 
 ```bash
 # 1. Clone the repository
-git clone [https://github.com/vivian-sketch58/HDBResalePricePrediction.git](https://github.com/vivian-sketch58/HDBResalePricePrediction.git)
+git clone https://github.com/vivian-sketch58/HDBResalePricePrediction.git
 cd HDBResalePricePrediction
 
 # 2. Create environment

@@ -30,7 +30,7 @@ class DataPreparation:
         config (Dict[str, Any]): Configuration dictionary containing parameters for data cleaning and preprocessing.
         """
         self.config = config
-        self.preprocessor = self._create_preprocessor() # uses the 'numerical_features', 'nominal_features', 'ordinal_features', and 'passthrough_features' parameters from the  'config.yaml' file to specify which columns undergo specific transformations. 
+        self.preprocessor = self._create_preprocessor() # uses the  'config.yaml' file to specify which columns undergo specific transformations. 
 
     def clean_data(self, df: pd.DataFrame) -> pd.DataFrame:
         """
@@ -46,7 +46,7 @@ class DataPreparation:
         """
         logging.info("Starting data cleaning.")
 
-        # Reomoving Duplicates
+        # Removing Duplicates
         df.drop_duplicates(inplace=True)
 
         # Replace 'FOUR ROOM' with '4 ROOM' in the 'flat_type' column
