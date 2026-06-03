@@ -19,7 +19,7 @@ def main():
     config_path = "./src/config.yaml"
 
     with open(config_path, "r") as file:
-        config = yaml.safe_load(file)
+        config = yaml.safe_load(file) # Load configuration from YAML file. The loaded configuration is then passed to the DataPreparation and ModelTraining classes during instantiation to ensure that all settings and parameters are consistently applied across the pipeline.
 
     # Load CSV file into a DataFrame
     df = pd.read_csv(config["file_path"])

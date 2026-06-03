@@ -57,7 +57,7 @@ class ModelTraining:
         """
         logging.info("Starting data splitting.")
         # Separate the data into features and target
-        X = df.drop(columns=self.config["target_column"])
+        X = df.drop(columns=self.config["target_column"]) #  uses the 'target_column', 'val_test_size', and 'val_size' parameters from the configuration file to split the dataset.
         y = df[self.config["target_column"]]
         # Split the data into training (80%) and test-validation (20%) sets
         X_train, X_temp, y_train, y_temp = train_test_split(
@@ -140,7 +140,7 @@ class ModelTraining:
         logging.info("Starting hyperparameter tuning.")
         tuned_models = {}
         tuned_metrics = {}
-        param_grid = self.config["param_grid"]
+        param_grid = self.config["param_grid"] # uses parameters like 'param_grid', 'cv', and 'scoring' from the configuration file for hyperparameter tuning.
         cv = self.config["cv"]
         scoring = self.config["scoring"]
 
