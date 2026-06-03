@@ -8,10 +8,10 @@ An enterprise-grade, secure, and highly efficient machine learning pipeline desi
 
 Navigating the real estate market can be complex. This project automates the entire machine learning lifecycle - from raw data ingestion and secure preprocessing to model training, evaluation, and prediction - to accurately predict HDB resale prices. 
 
-By transforming historical housing data into actionable insights, this pipeline suports:
+By transforming historical housing data into actionable insights, this pipeline supports:
 
 * **Prospective Buyers:** Better budgeting and realistic price expectations
-* **For Current Owners:** Data-driven property valuation for informed selling decisions
+* **Current Owners:** Data-driven property valuation for informed selling decisions
 
 ## 🚀 Key Features
 
@@ -47,13 +47,13 @@ conda activate hdbenv
 # Install dependencies
 conda install pandas numpy scikit-learn pyyaml
 
-# 3. Or using pip:
+# Or using pip:
 pip install -r requirements.txt
 ```
 
 ## 📁 Project Repository Structure
 ```
-HDBresalepricepredictions/
+HDBresalepriceprediction/
 │
 ├── data/
 │   ├── resale_transactions.csv
@@ -83,10 +83,7 @@ Edit `config.yaml` to control:
 `python main.py`
 
 ### 🔹 Step 3: Output
-* Cleaned dataset
-* Trained model
 * Evaluation metrics
-* Predictions
 
 
 ## 🔄 Logical Steps/Flow of the Pipeline
@@ -100,9 +97,9 @@ The pipeline follows a structured workflow:
     * Encode categorical variables
     * Scale numerical features
 3. **Feature Engineering**
-    * Create derived features (e.g., storey_range,remaining_lease_months)
+    * Create derived features (e.g., storey_range, remaining_lease_months)
 4. **Model Training**
-    * Train regression models (i.e. Linear Regression, Ridge, and lasso)
+    * Train regression models (i.e. Linear Regression, Ridge, and Lasso)
 5. **Model Evaluation**
     * Evaluate using metrics such as RMSE and R²
 6. **Prediction**
@@ -112,7 +109,7 @@ The pipeline follows a structured workflow:
 ## 🔍 Key Findings from EDA
 
 * Prevalence of mid-sized flats (3/4/5-room)
-* Pproperty values is broad spectrum with right-skewed (higher price properties that extend the tail )
+* Property values is broad spectrum with right-skewed (higher price properties that extend the tail )
 * Resale listings are influenced by seasonal or market factors rather than a consistent monthly trend
 * Location (town impact) is a strong price driver
 * Remaining lease significantly affects price
@@ -125,7 +122,7 @@ The pipeline follows a structured workflow:
 | ------------ | ----------------- | -------------------------------------- |
 | Numerical    | StandardScaler    | Normalize features for model stability |
 | Categorical  | OneHotEncoder     | Convert nominal categories             |
-| Ordinal      | OrdinalEncoder    | Encode ordered features (e.g., story_level)               |
+| Ordinal      | OrdinalEncoder    | Encode ordered features (e.g., flat_type, story_level)               |
 | Missing Data | Imputation | Handle null values  (e.g., town_name)                   |
 | Engineered   | Custom Features   | e.g., remaining_lease_months   |
 
@@ -137,13 +134,13 @@ The pipeline follows a structured workflow:
 Baseline model
 Interpretable, simple and fast
 
-**ridge regression  (L2 Regularization)**
+**Ridge regression  (L2 Regularization)**
 * Reduces overfitting by penalizing large coefficients
 * Helps control overfitting, especially with many correlated features
 * Handles multicollinearity effectively by distributing weights across correlated variables
 * Improves generalization performance on validation/test data
 
-**lasso regression (L1 Regularization)**
+**Lasso regression (L1 Regularization)**
 * Performs automatic feature selection by shrinking some coefficients to zero
 * Produces simpler and more interpretable models
 * Useful when identifying the most important predictors
